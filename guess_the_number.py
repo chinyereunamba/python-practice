@@ -32,7 +32,7 @@ def start_game():
 
         match: list[int] = [x for x in has_num if guess.index(x) == guess_num.index(x)]
 
-        check: list[int] = [x for x in has_num if x not in match]
+        check: list[int] = list(set(has_num).difference(set(match)))
 
         if len(match) == 1:
             print(f"{len(match)} number is correct and in the right position")
@@ -47,6 +47,15 @@ def start_game():
             print(f"{len(check)} numbers are correct but in the wrong position")
         if not match and not has_num:
             print("No number is correct")
+        
+
+        if len(match) == 2 and check not in guess_num:
+            next_num =list(set(guess_num).difference(set(check)))
+            if next_num[0] % 2 == 0:
+                print('The next number is an even number')
+            else:
+                print("The next number is an odd number")
+
 
         print("\n")
         print("\u2764\uFE0F  " * life)
